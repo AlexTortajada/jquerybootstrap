@@ -12,4 +12,3 @@ Llista de les URL's d'interés:
 * [jQuery - API](http://api.jquery.com/)
 * [jQuery - CheatSheet](https://oscarotero.com/jquery/)
 * [Bootstrap](http://getbootstrap.com/)
-* [Bootstrap - CheatSheet](https://hackerthemes.com/bootstrap-cheatsheet/#tooltip)
