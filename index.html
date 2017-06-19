@@ -164,11 +164,7 @@
 		$(document).ready(function () {
 			console.log("Ready en $");
 
-			var _options = new Options();
-			_options.backdrop = "static";
-			_options.show = false;
-
-			$("#modalRegistro").modal(_options);
+			$("#modalRegistro").modal(new Options());
 
 			$("#showModal").click(() => {
 				$("#modalRegistro").modal("show");
@@ -184,8 +180,8 @@
 		});
 
 		function Options() {
-			var backdrop = "static";
-			var show = false;
+			this.backdrop = "static";
+			this.show = false;
 		}
 
 		function Calculador(base, altura) {
