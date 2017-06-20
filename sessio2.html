@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ca">
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+
+<body>
+    <p class="paragraf">Paragraf1 <button id="comprar1" class="btn btn-primary comprar">Comprar</button></p>
+    <p class="paragraf">Paragraf2 <button id="comprar2" class="btn btn-primary comprar">Comprar</button></p>
+    <p class="paragraf">Paragraf3 <button id="comprar3" class="btn btn-primary comprar">Comprar</button></p>
+    <p class="paragraf">Paragraf4 <button id="comprar4" class="btn btn-primary comprar">Comprar</button></p>
+
+    <button id="mostrarModal" class="btn btn-primary">Click</button>
+    <button id="disableComprar" class="btn btn-primary">Disable</button>
+    <div id="divModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            console.log('ready!');
+            $("#mostrarModal").click(function() {
+                $('#divModal').modal({
+                    backdrop: "static",
+                    keyboard: false,
+                    show: true
+                });
+            });
+
+            var botons = $(".comprar");
+
+            $("#disableComprar").click(() => {
+                $(".comprar").attr('disabled', 'disabled');
+            });
+
+            $(".comprar").click(function(pepito) {
+                alert(pepito.target.id);
+            });
+
+            for (var i = 0; i < botons.length; i++) {
+                let j = i;
+                $("#" + botons[i].id).click(function() {
+                    alert(j);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
