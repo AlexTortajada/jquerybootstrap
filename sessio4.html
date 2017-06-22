@@ -10,12 +10,72 @@
 </head>
 
 <body>
+    <!-- quiniela 
+    jornada amb 15 partits, mostrar un grid amb la informació de cada partit podent sel·leccionar 1 x 2.
+    en fer click a un botó comprarar els resustats triats amb el resultat real
+    -->
+    <div id="quiniela" class="container-fluid">
+
+    </div>
+
+    <div id="check" class="btn btn-primary">Comprobar</div>
+
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Mi script específico -->
     <script>
-        $(document).ready(() => {
+        var resultados = ["1", "X", "2"];
+        var equipos = ["Barça", "Madrid", "Leganés", "Girona", "Horta", "Sant Joan", "Gramanet", "Santaco F.C.", "TheCorner", "Sevilla",
+            "Atleti", "Vilassar", "Premià", "Mataró", "Badalona", "Costa de Marfil", "Italia", "Drinkpin", "Sublime", "Visual Code",
+            "Notepad++", "Betis", "Milan", "Juve", "Brescia", "Arsenal", "Chelsea", "Fiore", "Yokohama", "Newteam"
+        ];
 
+        function Partido(casa, fuera) {
+            this.Casa = casa;
+            this.Fuera = fuera;
+            this.Resultado = resultados[Math.floor((Math.random() * 3))];
+        }
+
+        var jornadas = new Array();
+
+        $(document).ready(() => {
+            var acertados = 0;
+
+            for (var iEquipo = 0; iEquipo < 15; iEquipo++) {
+                jornadas.push(new Partido(equipos[iEquipo], equipos[iEquipo + 15]));
+            }
+
+            var index = 0;
+            jornadas.forEach((_pepito) => {
+                index++;
+                var innerHtml = '<div class="row partido">' +
+                    '<div class="col-md-2"><label for="casa' + index + '">' + _pepito.Casa + '</label></div>' +
+                    '<div class="col-md-1"><input id = "casa' + index + '" name="partido' + index + '" type="radio" value="1" /></div>' +
+                    '<div class="col-md-1"><input name="partido' + index + '" type="radio" value="X" /></div>' +
+                    '<div class="col-md-1"><input id = "fuera' + index + '" name="partido' + index + '" type="radio" value="2" /></div>' +
+                    '<div class="col-md-2"><label for="fuera' + index + '">' + _pepito.Fuera + '</label></div>' +
+                    '<div class="col-md-3 text-danger" id="correcte' + index + '"></div></div>';
+
+                $("#quiniela").append(innerHtml);
+            });
+
+            $("#check").click(() => {
+                acertados = 0;
+                var valors = $(".partido :radio:checked");
+                if (valors.length < 15) {
+                    alert("Selecciona todos los partido");
+                } else {
+                    $(":radio").attr('disabled', 'disabled');
+                    for (var iCont = 0; iCont < valors.length; iCont++) {
+                        $("#correcte" + [iCont + 1]).text("");
+                        if (valors[iCont].value == jornadas[iCont].Resultado)
+                            acertados++;
+                        else
+                            $("#correcte" + [iCont + 1]).html("<span>El correcte era " + jornadas[iCont].Resultado + "</span>");
+
+                    }
+                }
+            });
         });
     </script>
 </body>
