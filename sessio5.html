@@ -2,6 +2,12 @@
 <html lang="es">
 
 <head>
+    <style>
+        [data-newclass="text-muted"] {
+            font-weight: 700 !important;
+        }
+    </style>
+
     <meta charset="UTF-8" />
     <title>Exemple de JQuery - Inst</title>
     <!-- Latest compiled and minified CSS -->
@@ -11,7 +17,9 @@
 
 <body>
     <div class="container">
-        <h1 class="titol text-danger">Hello world</h1>
+        <h1 class="titol">Hello world</h1>
+        <h2 class="titol">Hello world 2</h2>
+        <h3 class="titol">Hello world 3</h3>
 
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -19,11 +27,15 @@
     <span class="caret"></span>
   </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Separated link</a></li>
+                <li><a href="#" class="colores" data-newclass="text-muted">Muted</a></li>
+                <li><a href="#" class="colores" data-newclass="text-primary">Primary</a></li>
+                <li><a href="#" class="colores" data-newclass="text-success">Success</a></li>
+                <li><a href="#" class="colores" data-newclass="bg-success">BG</a></li>
+                <li><a href="#" class="colores" data-newclass="bg-primary">BG1</a></li>
+                <li><a href="#" class="colores" data-newclass="bg-danger">Bg2</a></li>
+                <li><a href="#" class="colores" data-newclass="text-info">Info</a></li>
+                <li><a href="#" class="colores" data-newclass="text-warning">Warning</a></li>
+                <li><a href="#" class="colores" data-newclass="text-danger">Danger</a></li>
             </ul>
         </div>
     </div>
@@ -32,6 +44,17 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Mi script específico -->
     <script>
+        var anterior;
+
+        $(document).ready(() => {
+            $(".colores").click((e) => {
+                if (anterior)
+                    $(".titol").removeClass(anterior);
+
+                anterior = $(e.target).data("newclass");
+                $(".titol").addClass(anterior);
+            });
+        });
     </script>
 </body>
 
